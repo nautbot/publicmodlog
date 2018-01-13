@@ -1,0 +1,18 @@
+{
+  "scanuser" : {
+    "client_id" : "clientid",
+    "client_secret" : "clientsecret",
+    "redirect" : "http://127.0.0.1:65010/authorize_callback",
+    "username" : "username",
+    "password" : "password",
+    "version": "0.1.0"
+  },
+  "loguser" : {
+    "client_id" : "clientid",
+    "client_secret" : "clientsecret",
+    "redirect" : "http://127.0.0.1:65010/authorize_callback",
+    "username" : "username",
+    "password" : "password",
+    "version": "0.1.0"
+  }
+}
