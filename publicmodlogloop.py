@@ -143,67 +143,6 @@ Target Permalink: {5}'.format(modItem.Moderator, modItem.Action, modItem.TargetU
                 previousVersion = modItem.TargetBody
             # Create post
             rl.subreddit(settings_bot['logsubreddit']).submit(postTitle, postBody)
-        # # Request moderation log items
-        # logs = r.subreddit(settings_bot['scansubreddit']).mod.log(limit=None)
-        # # Sort by date ascending
-        # logs = sorted(logs, key=lambda log: log.created_utc)
-        # for log in logs:
-        #     try:
-        #         # Skip if already posted
-        #         if log.id in processed_modlogitems: continue
-        #         # Build post title
-        #         posttitle = modlog_title_format.format(log.action, time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(log.created_utc)))
-        #         # Build post body
-        #         posttext = modlog_body_format.format(log.mod.name, log.action, log.target_author, log.target_title, log.target_body, log.target_permalink)
-        #         # Create submission
-        #         #r.subreddit(settings_bot['logsubreddit']).submit(posttitle, posttext)
-        #         print('### ' + posttitle)
-        #         print(posttext)
-        #         # Add to processed moderation log items
-        #         processed_modlogitems.append(log.id)
-        #     except Exception as e:
-        #         print('Scan : Modlog : ', e)
-        # # Request Automoderator config revisions
-        # automodrevisions = r.subreddit(settings_bot['scansubreddit']).wiki['config/automoderator'].revisions()
-        # # Sort by date ascending
-        # automodrevisions = sorted(automodrevisions, key=lambda automodrevisions: automodrevisions['timestamp'])
-        # # Placeholder variable for previous config revision
-        # previousversion = ''
-        # for automodrevision in automodrevisions:
-        #     try:
-        #         # Skip if already posted
-        #         if automodrevision['timestamp'] in processed_wikichanges: continue
-        #         # Build post title
-        #         posttitle = automod_title_format.format(time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(automodrevision['timestamp'])))
-        #         # Build post body - add moderator username/revision reason
-        #         posttext = 'Moderator: ' + automodrevision['author'].name + '\n\nReason: ' + str(automodrevision['reason'])
-        #         # Request current configuration text
-        #         revisionid = automodrevision['id']
-        #         currentversion = r.subreddit(settings_bot['scansubreddit']).wiki['config/automoderator?v={0}'.format(revisionid)].content_md
-        #         # Compute differences from previous configuration text
-        #         diffs = dmp.diff_main(currentversion, previousversion)
-        #         dmp.diff_cleanupSemantic(diffs)
-        #         # Build post body - append changes
-        #         for diff in diffs:
-        #             if int(diff[0]) == 1:
-        #                 # Append removals
-        #                 posttext = posttext + '\n\nRemoved: ' + diff[1]
-        #             elif int(diff[0]) == -1:
-        #                 # Append additions
-        #                 posttext = posttext + '\n\nAdded: ' + diff[1]
-        #         # Appened current version
-        #         posttext = posttext + '\n\nCurrent Version:\n\n' + currentversion
-        #         # Create submission
-        #         #r.subreddit(settings_bot['logsubreddit']).submit(posttitle, posttext)
-        #         print('### ' + posttitle)
-        #         print(posttext)
-        #         # Replace previous config revision text with current revision
-        #         previousversion = currentversion
-        #         # Add to processed config revisions
-        #         processed_wikichanges.append(automodrevision['timestamp'])
-        #     except Exception as e:
-        #         print('Scan : Automoderator Config : ', e)
-        #         pass
     except Exception as e:
         print(e)
         pass
